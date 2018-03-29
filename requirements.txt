@@ -1,5 +1,5 @@
 python-telegram-bot
 requests
-pycurl
+pycurl==7.43.0 --install-option='--with-nss'
 lxml
 grab
