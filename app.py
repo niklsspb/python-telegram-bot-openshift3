@@ -1,4 +1,5 @@
 import logging
+import os
 from queue import Queue
 from threading import Thread
 from telegram import Bot
@@ -7,7 +8,7 @@ from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Fi
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
-TOKEN = 'YOUR-TELEGRAM-BOT-TOKEN'
+TOKEN = os.getenv('TOKEN')
 
 
 def start(bot, update):
