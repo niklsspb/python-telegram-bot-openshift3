@@ -1,4 +1,4 @@
 python-telegram-bot
 requests
-pycurl==7.43.0 --global-option='--with-nss'
+pycurl
 grab
