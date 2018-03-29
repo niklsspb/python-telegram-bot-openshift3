@@ -4,6 +4,8 @@ from queue import Queue
 from threading import Thread
 from telegram import Bot
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Updater, Filters
+from jobs import start, get_gold, get_everyday
+from actions import get_my_orders
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -42,9 +44,12 @@ def setup(webhook_url=None):
         dp = updater.dispatcher
         dp.add_handler(CommandHandler("start", start))
         dp.add_handler(CommandHandler("help", help))
-
+        dp.add_handler(CommandHandler("getgold", get_gold))
+        dp.add_handler(CommandHandler("everyday", get_everyday))
+        dp.add_handler(MessageHandler([Filters.text], get_my_orders))
+        dp.add_handler(MessageHandler([Filters.group], get_my_orders))
         # on noncommand i.e message - echo the message on Telegram
-        dp.add_handler(MessageHandler(Filters.text, echo))
+        # dp.add_handler(MessageHandler(Filters.text, echo))
 
         # log all errors
         dp.add_error_handler(error)
